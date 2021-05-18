@@ -14,6 +14,12 @@ public class Member {
 
     private static int memberIDCounter = 1; //todo: perhaps change to more unique ID generation?
 
+    /**
+     * @param name first and last name
+     * @param age  member age
+     * @param membershipType active/passive
+     * @param activityType exercise/competitive
+     */
     public Member (String name, int age, String membershipType, String activityType) {
         this.name = name;
         this.age = age;
