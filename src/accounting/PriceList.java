@@ -6,12 +6,32 @@ import java.util.Scanner;
 
 public class PriceList {
 
-    private static double passiveFee;
-    private static double juniorFee;
-    private static double seniorFee;
-    private static double over60Fee;
+    //todo: change these to read from file
+    private static double passiveFee = 500;
+    private static double juniorFee = 1000;
+    private static double seniorFee = 1600;
+    private static double over60Discount = 0.75;
+    private static double over60Fee = 1600 * over60Discount;
 
-    private static double over60Discount = 0.75; //todo: perhaps change to read from file? Or percentage?
+    public double getPassiveFee() {
+        return passiveFee;
+    }
+
+    public double getJuniorFee() {
+        return juniorFee;
+    }
+
+    public double getSeniorFee() {
+        return seniorFee;
+    }
+
+    public double getOver60Fee() {
+        return over60Fee;
+    }
+
+    public double getOver60Discount() {
+        return over60Discount;
+    }
 
     /*
     public void initializePriceList() throws FileNotFoundException {
