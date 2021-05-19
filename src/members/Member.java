@@ -57,7 +57,7 @@ public class Member {
         System.out.println("* " + age + " år");
         System.out.println("* " + ageGroup.substring(0, 1).toUpperCase() + ageGroup.substring(1));
         System.out.println("* " + membershipType.substring(0, 1).toUpperCase() + membershipType.substring(1) + "t medlem");
-        //only display activityType is member is not passive
+        //only display activityType if member is not passive
         if(!membershipType.equals("passiv")) {
             System.out.println("* " + activityType.substring(0, 1).toUpperCase() + activityType.substring(1));
         }
@@ -105,5 +105,9 @@ public class Member {
 
     public void setHasPaidMembership(boolean hasPaidMembership) {
         this.hasPaidMembership = hasPaidMembership;
+    }
+
+    public int getMemberID() {
+        return memberID;
     }
 }

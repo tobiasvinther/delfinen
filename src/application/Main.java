@@ -14,6 +14,7 @@ public class Main {
         Member member2 = new Member("Flemming Nielsen", LocalDate.of(1994, 6, 11), "passiv", "");
 
         MemberList.printMemberList();
+        MemberList.searchForMember("Tobias Vinther");
 
     }
 }
