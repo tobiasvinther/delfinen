@@ -10,22 +10,27 @@ public class PriceList {
     private static double over60Fee = 1600 * over60Discount;
 
     public double getPassiveFee() {
+
         return passiveFee;
     }
 
     public double getJuniorFee() {
+
         return juniorFee;
     }
 
     public double getSeniorFee() {
+
         return seniorFee;
     }
 
     public double getOver60Fee() {
+
         return over60Fee;
     }
 
     public double getOver60Discount() {
+
         return over60Discount;
     }
 
