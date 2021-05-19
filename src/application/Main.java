@@ -1,16 +1,19 @@
 package application;
 
 import members.Member;
+import members.MemberList;
+
+import java.time.LocalDate;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        Member member1 = new Member("Tobias Vinther", 36, "aktiv", "motionist");
-        member1.printMember();
+        //member tests
+        Member member1 = new Member("Tobias Vinther", LocalDate.of(1985, 2, 1), "aktiv", "motionist");
+        Member member2 = new Member("Flemming Nielsen", LocalDate.of(1994, 6, 11), "passiv", "");
 
-        Member member2 = new Member("Tobias Vinther", 36, "passiv", "");
-        member2.printMember();
+        MemberList.printMemberList();
 
     }
 }

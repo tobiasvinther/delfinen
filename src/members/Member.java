@@ -1,12 +1,15 @@
 package members;
 
-import accounting.PriceList;
 import java.text.DecimalFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 //@author Tobias Vinther
 public class Member {
 
     private String name;
+    private LocalDate birthday;
     private int age;
     private int memberID;
     private String membershipType; //active or passive
@@ -20,55 +23,41 @@ public class Member {
 
     /**
      * @param name first and last name
-     * @param age  member age
+     * @param birthday  year, month, date
      * @param membershipType active/passive
      * @param activityType exercise/competitive (empty if passive)
      */
-    public Member (String name, int age, String membershipType, String activityType) {
+    public Member (String name, LocalDate birthday, String membershipType, String activityType) {
         this.name = name;
-        this.age = age;
+        this.birthday = birthday;
         this.membershipType = membershipType;
         this.activityType = activityType;
-
         this.hasPaidMembership = true;
-        this.ageGroup = calculateAgeGroup(age);
-        this.membershipFee = calculateMembershipFee(membershipType, age);
+        MemberCalculations memCalculator = new MemberCalculations();
+        this.age = memCalculator.calculateAge(birthday);
+        this.ageGroup = memCalculator.calculateAgeGroup(age);
+        this.membershipFee = memCalculator.calculateMembershipFee(membershipType, age, ageGroup);
         this.memberID = memberIDCounter;
+
         memberIDCounter++;
-    }
 
-    public String calculateAgeGroup (int age) {
-        if(age < 18) {
-            return "junior";
-        } else {
-            return "senior";
-        }
-    }
-
-    //todo: change return values to get input from priceList
-    public double calculateMembershipFee(String membershipType, int age) {
-        PriceList priceList = new PriceList();
-
-        if(membershipType.equals("passiv")) {
-            return priceList.getPassiveFee(); //passive
-        } else if(ageGroup.equals("junior")) {
-            return priceList.getJuniorFee(); //junior
-        } else if (ageGroup.equals("senior") && age > 60) {
-            return priceList.getOver60Fee(); //senior with discount
-        } else {
-            return priceList.getSeniorFee(); //normal senior
-        }
+        MemberList.addMemberToList(this);
     }
 
     public void printMember() {
 
+        //this is to get rid of a single zero decimal and limit decimals to two places
         DecimalFormat df = new DecimalFormat("#.##");
 
+        System.out.println("-----------------------");
         System.out.println("* " + name);
         System.out.println("* " + "Medlems-ID: " + memberID);
+        //formatting date to Danish standard
+        System.out.println("* " + "Født: " + DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT).format(birthday));
         System.out.println("* " + age + " år");
         System.out.println("* " + ageGroup.substring(0, 1).toUpperCase() + ageGroup.substring(1));
         System.out.println("* " + membershipType.substring(0, 1).toUpperCase() + membershipType.substring(1) + "t medlem");
+        //only display activityType is member is not passive
         if(!membershipType.equals("passiv")) {
             System.out.println("* " + activityType.substring(0, 1).toUpperCase() + activityType.substring(1));
         }
@@ -83,9 +72,38 @@ public class Member {
 
     @Override
     public String toString() {
-        return name + ", " + age + ", " + ageGroup;
+        return name + ", " + ageGroup;
     }
 
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 
+    public String getMembershipType() {
+        return membershipType;
+    }
+
+    public void setMembershipType(String membershipType) {
+        this.membershipType = membershipType;
+    }
+
+    public String getActivityType() {
+        return activityType;
+    }
+
+    public void setActivityType(String activityType) {
+        this.activityType = activityType;
+    }
+
+    public boolean isHasPaidMembership() {
+        return hasPaidMembership;
+    }
+
+    public void setHasPaidMembership(boolean hasPaidMembership) {
+        this.hasPaidMembership = hasPaidMembership;
+    }
 }
