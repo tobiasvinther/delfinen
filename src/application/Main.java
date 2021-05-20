@@ -1,5 +1,6 @@
 package application;
 
+import accounting.Subscription;
 import members.Member;
 import members.MemberList;
 
@@ -17,6 +18,7 @@ public class Main {
         MemberList.printMemberList();
         MemberList.searchForMember("Tobias Vinther");
         member1.printMember();
+        Subscription.calculateSubscription();
 
     }
 }
