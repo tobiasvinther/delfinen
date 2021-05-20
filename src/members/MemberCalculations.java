@@ -3,6 +3,7 @@ package members;
 import accounting.PriceList;
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.format.DateTimeFormatter;
 
 //@author Tobias Vinther
 public class MemberCalculations {
@@ -38,4 +39,12 @@ public class MemberCalculations {
             return 0;
         }
     }
+
+    //convert birthdate as String to LocalDate
+    public LocalDate convertStringToLocalDate(String birthDateAsString) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+        //return LocalDate.parse(birthDateAsString);
+        return LocalDate.parse(birthDateAsString, formatter);
+    }
+
 }

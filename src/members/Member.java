@@ -44,6 +44,31 @@ public class Member {
         MemberList.addMemberToList(this);
     }
 
+    /**
+     * @param name first and last name
+     * @param birthday  DD/MM/YYYY
+     * @param membershipType active/passive
+     * @param activityType exercise/competitive (empty if passive)
+     */
+    //overloaded constructor, where birthday parameter is a string instead
+    public Member (String name, String birthday, String membershipType, String activityType) {
+        MemberCalculations memCalculator = new MemberCalculations();
+        this.name = name;
+        this.birthday = memCalculator.convertStringToLocalDate(birthday);
+        this.membershipType = membershipType;
+        this.activityType = activityType;
+        this.hasPaidMembership = true;
+        this.age = memCalculator.calculateAge(this.birthday);
+        this.ageGroup = memCalculator.calculateAgeGroup(age);
+        this.membershipFee = memCalculator.calculateMembershipFee(membershipType, age, ageGroup);
+        this.memberID = memberIDCounter;
+
+        memberIDCounter++;
+
+        MemberList.addMemberToList(this);
+    }
+
+
     public void printMember() {
 
         //this is to get rid of a single zero decimal and limit decimals to two places
@@ -53,7 +78,7 @@ public class Member {
         System.out.println("* " + name);
         System.out.println("* " + "Medlems-ID: " + memberID);
         //formatting date to Danish standard
-        System.out.println("* " + "Født: " + DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT).format(birthday));
+        System.out.println("* " + "Født: " + DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).format(birthday));
         System.out.println("* " + age + " år");
         System.out.println("* " + ageGroup.substring(0, 1).toUpperCase() + ageGroup.substring(1));
         System.out.println("* " + membershipType.substring(0, 1).toUpperCase() + membershipType.substring(1) + "t medlem");

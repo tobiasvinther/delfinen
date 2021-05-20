@@ -17,10 +17,15 @@ public class MemberList {
     }
 
     public static void printMemberList() {
+        for(int i = 0; i<MEMBER_LIST.size(); i++) {
+            System.out.print(i + " - ");
+            System.out.println(MEMBER_LIST.get(i));
+        }
+        /*
         for (Member member: MEMBER_LIST) {
-            //member.printMember();
             System.out.println(member);
         }
+         */
     }
 
     //todo: should this return a member instead?
@@ -41,4 +46,10 @@ public class MemberList {
             }
         }
     }
+
+    //get arrayList
+    public ArrayList<Member> getMemberArrayList() {
+        return MEMBER_LIST;
+    }
+
 }
