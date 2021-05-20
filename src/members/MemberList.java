@@ -1,6 +1,7 @@
 package members;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 //@author Tobias Vinther
 public class MemberList {
@@ -17,6 +18,7 @@ public class MemberList {
     }
 
     public static void printMemberList() {
+        Collections.sort(MEMBER_LIST);
         for(int i = 0; i<MEMBER_LIST.size(); i++) {
             System.out.print(i + " - ");
             System.out.println(MEMBER_LIST.get(i));

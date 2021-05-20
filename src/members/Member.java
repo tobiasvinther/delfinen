@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
 //@author Tobias Vinther
-public class Member {
+public class Member implements Comparable<Member> {
 
     private String name;
     private LocalDate birthday;
@@ -97,6 +97,16 @@ public class Member {
     @Override
     public String toString() {
         return name + ", " + ageGroup;
+    }
+
+    public int compareTo(Member otherMember) {
+        if(this.ageGroup.equals(otherMember.ageGroup)) {
+            //if both members are same agrGroup, compare membership fees (this will put passives at the bottom)
+            return (int)this.membershipFee - (int)otherMember.membershipFee;
+            //return 0;
+        } else if(this.ageGroup.equals("senior") && otherMember.ageGroup.equals("junior")) {
+            return 1;
+        } else return -1;
     }
 
     public String getName() {
