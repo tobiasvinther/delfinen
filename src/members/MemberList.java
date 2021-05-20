@@ -48,7 +48,7 @@ public class MemberList {
     }
 
     //get arrayList
-    public ArrayList<Member> getMemberArrayList() {
+    public static ArrayList<Member> getMemberArrayList() {
         return MEMBER_LIST;
     }
 
