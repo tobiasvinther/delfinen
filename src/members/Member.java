@@ -135,4 +135,8 @@ public class Member {
     public int getMemberID() {
         return memberID;
     }
+
+    public double getMembershipFee() {
+        return membershipFee;
+    }
 }
