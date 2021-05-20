@@ -10,11 +10,6 @@ public class Menu {
 
     }
 
-    Scanner sc = new Scanner(System.in);
-    //Accounting accounting = new Accounting();
-    //Appication application = new Application();
-    //Members members = new Members();
-
     public static int getUserInput(){
         Scanner scanner = new Scanner(System.in);
         int userInput = scanner.nextInt();
