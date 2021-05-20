@@ -68,7 +68,6 @@ public class Member {
         MemberList.addMemberToList(this);
     }
 
-
     public void printMember() {
 
         //this is to get rid of a single zero decimal and limit decimals to two places
