@@ -1,3 +1,5 @@
+import members.Member;
+
 import java.sql.SQLOutput;
 import java.util.Scanner;
 
@@ -14,7 +16,7 @@ public class Menu {
     //Members members = new Members();
 
     public static int getUserInput(){
-        Scanner scanner = null;
+        Scanner scanner = new Scanner(System.in);
         int userInput = scanner.nextInt();
         return userInput;
     }
@@ -49,6 +51,7 @@ public class Menu {
             case 4:
                 //Exit program
                 System.out.println("You chose to exit program");
+                break;
             default:
                 //User input an unexspected choise.
                 System.out.println("User input unexspected choise");
@@ -58,6 +61,14 @@ public class Menu {
         Scanner userInput = new Scanner(System.in);
         System.out.println("Enter member name: ");
         String name = userInput.nextLine();
+        System.out.println("Enter dd-mm-yyyy: ");
+        String birthday = userInput.nextLine();
+        System.out.println("Enter (active or passive membership): ");
+        String membershiptype = userInput.nextLine();
+        System.out.println("Enter activity type(motionist or competitive): ");
+        String activityType = userInput.nextLine();
+        Member newMember = new Member(name, birthday, membershiptype, activityType );
+        //controller.newMember(newMember);
 
     }
 
