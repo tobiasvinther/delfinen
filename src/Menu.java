@@ -1,6 +1,10 @@
 import java.util.Scanner;
 
 public class Menu {
+    public static void main(String[] args) {
+
+
+    }
 
     Scanner sc = new Scanner(System.in);
     //Accounting accounting = new Accounting();
@@ -26,6 +30,13 @@ public class Menu {
                 System.out.println();
 
         }
+    }
+    public void newMember() {
+        Scanner userInput = new Scanner(System.in);
+        System.out.println("Enter member name: ");
+        String name = userInput.nextLine();
+        Member newMember = createNewMember(name);
+        newMemberAddMember(newMember);
     }
 
 }
