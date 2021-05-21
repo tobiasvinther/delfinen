@@ -10,7 +10,8 @@ import java.time.LocalDate;
 public class Main {
 
     public static void main(String[] args) {
-
+        //testing membership class
+        Membership.importPriceList();
         //member tests
         Member member1 = new Member("Tobias Vinther", LocalDate.of(1985, 2, 1), "aktiv", "motionist");
         Member member2 = new Member("Flemming Nielsen", LocalDate.of(1994, 6, 11), "passiv", "");
@@ -31,7 +32,6 @@ public class Main {
         WriteToFile writeToFile = new WriteToFile();
         writeToFile.writeMembersToFile();
 
-        //testing membership class
-        Membership.importPriceList();
+
     }
 }
