@@ -1,8 +1,6 @@
 package application;
 
-import accounting.Membership;
-import accounting.PriceList;
-import accounting.Subscription;
+import accounting.*;
 import members.Member;
 import members.MemberList;
 import members.WriteToFile;

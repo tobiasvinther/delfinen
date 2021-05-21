@@ -33,7 +33,7 @@ public class MemberCalculations {
          */
 
         if(membershipType.equals("passiv")) {
-            return Membership.getMembershipFee("passive"); //passive
+            return Membership.getMembershipFee("passiv"); //passive
         } else if(ageGroup.equals("junior")) {
             return Membership.getMembershipFee("junior"); //junior
         } else if (ageGroup.equals("senior") && age > 60) {
