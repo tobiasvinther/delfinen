@@ -1,5 +1,6 @@
 package members;
 
+import accounting.Membership;
 import accounting.PriceList;
 import java.time.LocalDate;
 import java.time.Period;
@@ -19,6 +20,7 @@ public class MemberCalculations {
     public double calculateMembershipFee(String membershipType, int age, String ageGroup) {
         PriceList priceList = new PriceList();
 
+        /*
         if(membershipType.equals("passiv")) {
             return priceList.getPassiveFee(); //passive
         } else if(ageGroup.equals("junior")) {
@@ -28,6 +30,18 @@ public class MemberCalculations {
         } else {
             return priceList.getSeniorFee(); //normal senior
         }
+         */
+
+        if(membershipType.equals("passiv")) {
+            return Membership.getMembershipFee("passive"); //passive
+        } else if(ageGroup.equals("junior")) {
+            return Membership.getMembershipFee("junior"); //junior
+        } else if (ageGroup.equals("senior") && age > 60) {
+            return Membership.getMembershipFee("senior over 60"); //senior with discount
+        } else {
+            return Membership.getMembershipFee("senior"); //normal senior
+        }
+
     }
 
     //calculate age based on birth date and current date

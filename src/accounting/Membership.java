@@ -21,6 +21,7 @@ public class Membership {
     public static void importPriceList() {
 
         File priceList = new File("resources/memberships.csv");
+        double over60discount = 0.75; //25% discount for seniors over 60
 
         try {
             Scanner fileReader = new Scanner(priceList);
@@ -40,7 +41,7 @@ public class Membership {
             //create an object for the senior over 60, based on the existing senior object
             for(Membership membership : FEE_LIST) {
                 if(membership.name.equalsIgnoreCase("Senior")) {
-                    Membership seniorMembership = new Membership("Senior over 60", (membership.fee * 0.75));
+                    Membership seniorMembership = new Membership("Senior over 60", (membership.fee * over60discount));
                     FEE_LIST.add(seniorMembership);
                     break;
                 }
@@ -55,18 +56,19 @@ public class Membership {
         }
     }
 
+    //call to get the fee for a named membership type
+    public static double getMembershipFee(String membershipName) {
+        for(Membership membership : FEE_LIST) {
+            if(membership.name.equalsIgnoreCase(membershipName)) {
+                return membership.fee;
+            }
+        }
+        return -1;
+    }
+
     @Override
     public String toString() {
         DecimalFormat df = new DecimalFormat("#.##");
         return "* " + name + ": " + df.format(fee) + " kr.";
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public double getFee() {
-        return fee;
-    }
-
 }
