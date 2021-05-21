@@ -18,7 +18,7 @@ public class MemberCalculations {
     }
 
     public double calculateMembershipFee(String membershipType, int age, String ageGroup) {
-        PriceList priceList = new PriceList();
+        //PriceList priceList = new PriceList();
 
         /*
         if(membershipType.equals("passiv")) {
