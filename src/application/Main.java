@@ -1,5 +1,6 @@
 package application;
 
+import accounting.Membership;
 import accounting.PriceList;
 import accounting.Subscription;
 import members.Member;
@@ -28,8 +29,11 @@ public class Main {
         Subscription.hasNotPayed();
         subscription.checkFees();
 
+        //testing writing to file
         WriteToFile writeToFile = new WriteToFile();
         writeToFile.writeMembersToFile();
 
+        //testing membership class
+        Membership.importPriceList();
     }
 }
