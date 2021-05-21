@@ -2,7 +2,7 @@ package accounting;
 
 public class PriceList {
 
-    //todo: change these to read from file
+    //todo: create this as an object instead
     private static double passiveFee = 500;
     private static double juniorFee = 1000;
     private static double seniorFee = 1600;

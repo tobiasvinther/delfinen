@@ -51,6 +51,7 @@ public class Member implements Comparable<Member> {
      * @param activityType exercise/competitive (empty if passive)
      */
     //overloaded constructor, where birthday parameter is a string instead
+    //todo: add email as a required info
     public Member (String name, String birthday, String membershipType, String activityType) {
         MemberCalculations memCalculator = new MemberCalculations();
         this.name = name;

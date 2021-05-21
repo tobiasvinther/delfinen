@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.Collections;
 
+//@author: Tobias Vinther
 public class WriteToFile {
 
     public void writeMembersToFile() {
@@ -25,7 +26,9 @@ public class WriteToFile {
                 writer.write(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).format(member.getBirthDay()) + " | ");
                 writer.write(member.getAgeGroup() + " | ");
                 writer.write(member.getMembershipType() + "t medlem" + " | ");
-                writer.write(member.getActivityType() + " | ");
+                if(!member.getActivityType().equals("")) {
+                    writer.write(member.getActivityType() + " | ");
+                }
                 writer.write("\n--------------------------------------------------------\n");
             }
 
