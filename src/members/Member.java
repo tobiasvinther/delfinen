@@ -117,6 +117,14 @@ public class Member implements Comparable<Member> {
         this.name = name;
     }
 
+    public LocalDate getBirthDay() {
+        return this.birthday;
+    }
+
+    public String getAgeGroup() {
+        return this.ageGroup;
+    }
+
     public String getMembershipType() {
         return membershipType;
     }
