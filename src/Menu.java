@@ -58,7 +58,7 @@ public class Menu {
                 break;
             case 4:
                 //Rediger eller slet medlem
-                System.out.println("Du valgte at redigere eller slette medlem");
+                System.out.println("Du valgte at redigere eller slette et medlem");
                 editOrDeleteMember();
                 mainMenu();
                 break;
@@ -113,6 +113,7 @@ public class Menu {
 
 
     public static void editOrDeleteMember() {
+        System.out.println("Du har nu følgende muligheder: ");
         System.out.println("Rediger medlem: ");
         System.out.println("Slet medlem: ");
 
