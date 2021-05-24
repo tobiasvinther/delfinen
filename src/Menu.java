@@ -36,20 +36,21 @@ public class Menu {
 
         switch (getUserInput()) {
             case 1:
-                //Create member
+                //Opret medlem
                 System.out.println("Du valgte at oprette et nyt medlem");
                 System.out.println();
                 newMember();
                 break;
             case 2:
-                //See memberlist
+                //Se medlem
                 System.out.println("Du valgte at se søge efter medlem");
                 System.out.println();
                 //controller.Member;
+                seeMember();
                 mainMenu();
                 break;
             case 3:
-                //Rediger eller slet medlem
+                //Se medlemsliste
                 System.out.println("Du valgte at se medlemsliste");
                 System.out.println();
                 //controller.getMemberArraylist();
@@ -62,11 +63,28 @@ public class Menu {
                 mainMenu();
                 break;
             case 5:
-                //Afslut program
-                System.out.println("Program afsluttet!");
+                //Se årlige indtjening
+                System.out.println("Du valgte at se på årlige indtjening");
+                //controller.calculateSubcription();
+                break;
+            case 6:
+                //Se liste over medlemmer der er i restance.
+                System.out.println("Du valgte at se listen over medlemmer der er i restance");
+                //Svært at se hvilken klasse den skal hentes fra.
+                break;
+            case 7:
+                //Se kontingentsatser.
+                System.out.println("Du kan nu se kontingensatserne");
+                //controller.PriceList();
+                break;
+            case 8:
+                //Rediger kontingentsatser.
+                System.out.println("Du kan nu redigere i kontingentsatserne");
+                redigerKontingentpriserne();
+                mainMenu();
             default:
-                //User input an unexspected choise.
-                System.out.println("uønsket tastning!");
+                //Tastning eksistere ikke, prøv igen!
+                System.out.println("uønsket tastning! prøv igen!");
         }
     }
     public static void newMember() {
@@ -83,6 +101,17 @@ public class Menu {
         //controller.newMember(newMember);
 
     }
+    public static void seeMember() {
+        Scanner userInput = new Scanner(System.in);
+        System.out.println("Tast navn: ");
+        String name = userInput.nextLine();
+        System.out.println("Tast fødselsdag: ");
+        String birthday = userInput.nextLine();
+        //Member seeMember = new Member(name, birthday);
+        //controller.Member(seeMember);
+    }
+
+
     public static void editOrDeleteMember() {
         System.out.println("Rediger medlem: ");
         System.out.println("Slet medlem: ");
@@ -97,10 +126,52 @@ public class Menu {
                 //Slet medlem
                 System.out.println("Du valgte at slette et medlem");
                 //controller.Member
+            default:
+                //Tastning eksistere ikke, prøv igen.
+                System.out.println("Uønsket tastning! Prøv igen!");
 
         }
-
-
     }
+    public static void redigerKontingentpriserne() {
+        System.out.println("Du har nu følgende valgmuligheder: ");
+        System.out.println("Tryk 1 for at redigere passivt medlemsskab:");
+        System.out.println("Tryk 2 for at redigere junior medlemsskab: ");
+        System.out.println("Tryk 3 for at redigere senior medlemsskab: ");
+        System.out.println("Tryk 4 for at redigere rabat 60+ år: ");
+        System.out.println("Tryk 5 for at redigere 60+ år medlemsskab");
+
+        switch (getUserInput()) {
+            case 1:
+                //Rediger passiv medlemsskab.
+                System.out.println("Du valgte at redigere passivt medlemsskab ");
+                //controller.getPassivFee();
+                break;
+            case 2:
+                //Rediger juniormedlemsskab.
+                System.out.println("Du valgte at redigere juniormedlemsskab ");
+                //controller.getJuniorFee();
+                break;
+            case 3:
+                //Redigere seniormedlemsskab.
+                System.out.println("Du valgte at redigere seniormedlemsskab ");
+                //controller.getSeniorFee();
+                break;
+            case 4:
+                //Over 60 år rabat.
+                System.out.println("Du valgte at redigere rabat til 60+ ");
+                //controller.getOver60Fee();
+                break;
+            case 5:
+                //Redigere 60+ medlemsskab.
+                System.out.println("Du valgte at redigere medlemsskab for 60+ ");
+                //controller.getOver60Fee();
+                break;
+            default:
+                //Tastning eksistere ikke, prøv igen.
+                System.out.println("Uønsket tastning! Prøv igen!");
+
+        }
+    }
+
 
 }
