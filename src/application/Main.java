@@ -13,8 +13,8 @@ public class Main {
         //testing membership class
         Membership.importPriceList();
         //member tests
-        Member member1 = new Member("Tobias Vinther", LocalDate.of(1985, 2, 1), "aktiv", "motionist");
-        Member member2 = new Member("Flemming Nielsen", LocalDate.of(1994, 6, 11), "passiv", "");
+        Member member1 = new Member("Tobias Vinther", "01/02/1985", "test@email.dk", "aktiv", "motionist");
+        Member member2 = new Member("Flemming Nielsen", "13/12/1994", "test@email.dk", "passiv", "");
         Member member3 = new Member("Anders Skovgaard", "16/08/1984", "test@email.dk", "passiv", "");
         Member member4 = new Member("Felix Vimmel", "16/08/2008", "test@email.dk","aktiv", "konkurrencesvømmer");
 

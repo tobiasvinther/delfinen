@@ -24,34 +24,11 @@ public class Member implements Comparable<Member> {
 
     /**
      * @param name first and last name
-     * @param birthday  year, month, date
-     * @param membershipType active/passive
-     * @param activityType exercise/competitive (empty if passive)
-     */
-    public Member (String name, LocalDate birthday, String membershipType, String activityType) {
-        this.name = name;
-        this.birthday = birthday;
-        this.membershipType = membershipType;
-        this.activityType = activityType;
-        this.hasPaidMembership = true;
-        MemberCalculations memCalculator = new MemberCalculations();
-        this.age = memCalculator.calculateAge(birthday);
-        this.ageGroup = memCalculator.calculateAgeGroup(age);
-        this.membershipFee = memCalculator.calculateMembershipFee(membershipType, age, ageGroup);
-        this.memberID = memberIDCounter;
-
-        memberIDCounter++;
-
-        MemberList.addMemberToList(this);
-    }
-
-    /**
-     * @param name first and last name
      * @param birthday  DD/MM/YYYY
      * @param membershipType active/passive
      * @param activityType exercise/competitive (empty if passive)
      */
-    //overloaded constructor, where birthday parameter is a string instead
+    //constructor, where birthday parameter is a string instead
     public Member (String name, String birthday, String email, String membershipType, String activityType) {
         MemberCalculations memCalculator = new MemberCalculations();
         this.name = name;

@@ -17,6 +17,14 @@ public class MemberCalculations {
         }
     }
 
+    public String calculateMembershipType(int age, boolean isPassive) {
+        if(isPassive) {
+            return "passiv";
+        } else {
+            return calculateAgeGroup(age);
+        }
+    }
+
     public double calculateMembershipFee(String membershipType, int age, String ageGroup) {
         if(membershipType.equals("passiv")) {
             return Membership.getMembershipFee("passiv"); //passive
