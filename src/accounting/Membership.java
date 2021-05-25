@@ -1,5 +1,7 @@
 package accounting;
 
+import exceptions.MembershipNotFoundException;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.text.DecimalFormat;
@@ -64,6 +66,16 @@ public class Membership {
             }
         }
         return -1;
+    }
+
+    //looks through list of memberships and returns the membership object of the name given
+    public static Membership getMembership(String membershipName) throws MembershipNotFoundException {
+            for (Membership membership : FEE_LIST) {
+                if (membership.name.equalsIgnoreCase(membershipName)) {
+                    return membership;
+                }
+            }
+        throw new MembershipNotFoundException();
     }
 
     @Override

@@ -32,6 +32,12 @@ public class Main {
         WriteToFile writeToFile = new WriteToFile();
         writeToFile.writeMembersToFile();
 
+        //testing membership
+        try {
+            System.out.println(Membership.getMembership("Senior"));
+        } catch (Exception e) {
+            System.out.println("Medlemsskabet eksisterer ikke");;
+        }
 
     }
 }

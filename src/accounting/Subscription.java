@@ -23,13 +23,11 @@ public class Subscription {
     }
 
     public static void checkFees () {
-        PriceList priceList = new PriceList();
         System.out.println("Junior fee: " + Membership.getMembershipFee("Junior"));
-        System.out.println("Passive fee: " + Membership.getMembershipFee("passiv"));
+        System.out.println("Passive fee: " + Membership.getMembershipFee("passivt"));
         System.out.println("Senior fee: " + Membership.getMembershipFee("Senior"));
-        System.out.println("Over 60 years fee: " + Membership.getMembershipFee("Over 60"));
+        System.out.println("Over 60 years fee: " + Membership.getMembershipFee("Senior over 60"));
     }
-
 
 }
 
