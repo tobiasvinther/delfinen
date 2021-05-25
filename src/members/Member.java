@@ -159,4 +159,12 @@ public class Member implements Comparable<Member> {
     public double getMembershipFee() {
         return membershipFee;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }
