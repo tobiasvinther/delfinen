@@ -34,4 +34,7 @@ public class PriceList {
         return over60Discount;
     }
 
+    public static void setJuniorFee(double juniorFee) {
+        PriceList.juniorFee = juniorFee;
+    }
 }
