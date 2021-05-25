@@ -87,6 +87,7 @@ public class Menu {
             default:
                 //Tastning eksistere ikke, prøv igen!
                 System.out.println("uønsket tastning! prøv igen!");
+                mainMenu();
         }
     }
     public static void newMember() {
@@ -134,6 +135,7 @@ public class Menu {
             default:
                 //Tastning eksistere ikke, prøv igen.
                 System.out.println("Uønsket tastning! Prøv igen!");
+                mainMenu();
 
         }
     }
@@ -174,6 +176,7 @@ public class Menu {
             default:
                 //Tastning eksistere ikke, prøv igen.
                 System.out.println("Uønsket tastning! Prøv igen!");
+                mainMenu();
 
         }
     }
