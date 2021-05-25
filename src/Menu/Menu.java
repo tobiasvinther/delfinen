@@ -193,9 +193,12 @@ public class Menu {
     }
     public static void memberListMenu() {
         System.out.println("Vælg et medlem");
-        MemberList.printMemberList();
+        int chosenMemberIndex = getUserInput()-1;
+        //controller.printMember(chosenMemberIndex);
+
+        /*MemberList.printMemberList();
         int chosenMemberIndex = getUserInput();
-        MemberList.getMemberArrayList().get(chosenMemberIndex-1).printMember();
+        MemberList.getMemberArrayList().get(chosenMemberIndex-1).printMember();*/
         //todo: should go through the controller.
 
     }
