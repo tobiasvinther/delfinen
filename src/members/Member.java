@@ -78,6 +78,7 @@ public class Member implements Comparable<Member> {
         System.out.println("-----------------------");
         System.out.println("* " + name);
         System.out.println("* " + "Medlems-ID: " + memberID);
+        System.out.println("* " + "email: " + email);
         //formatting date to Danish standard
         System.out.println("* " + "Født: " + DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).format(birthday));
         System.out.println("* " + age + " år");
