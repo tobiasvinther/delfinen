@@ -1,12 +1,18 @@
 package Menu;
 
 import members.Member;
+import members.MemberList;
 
 import java.sql.SQLOutput;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Menu {
     public static void main(String[] args) {
+        Member member1 = new Member("Tobias Vinther", LocalDate.of(1985, 2, 1), "aktiv", "motionist");
+        Member member2 = new Member("Flemming Nielsen", LocalDate.of(1994, 6, 11), "passiv", "");
+        Member member3 = new Member("Anders Skovgaard", "16/08/1984", "test@email.dk", "passiv", "");
+        Member member4 = new Member("Felix Vimmel", "16/08/2008", "test@email.dk","aktiv", "konkurrencesvømmer");
         mainMenu();
 
 
@@ -26,7 +32,7 @@ public class Menu {
         System.out.println("+--------------------------+");
         System.out.println("Please make a selection: ");
         System.out.println("1 ->> Opret nyt medlem");
-        System.out.println("2 ->> Se medlem");
+        System.out.println("2 ->> Søg på medlem");
         System.out.println("3 ->> Se medlemsliste: ");
         System.out.println("4 ->> Rediger eller slet medlem");
         System.out.println("5 ->> Se årlige indtjening: ");
@@ -45,24 +51,22 @@ public class Menu {
                 break;
             case 2:
                 //Se medlem
-                System.out.println("Du valgte at se søge efter medlem");
+                System.out.println("Du valgte at søge efter et medlem");
                 System.out.println();
                 //controller.Member;
-                seeMember();
-                mainMenu();
+                searchMember();
                 break;
             case 3:
                 //Se medlemsliste
                 System.out.println("Du valgte at se medlemsliste");
                 System.out.println();
-                //controller.getMemberArraylist();
-                mainMenu();
+                memberListMenu();
+                //controller.printMemberList();
                 break;
             case 4:
                 //Rediger eller slet medlem
                 System.out.println("Du valgte at redigere eller slette et medlem");
                 editOrDeleteMember();
-                mainMenu();
                 break;
             case 5:
                 //Se årlige indtjening
@@ -76,14 +80,13 @@ public class Menu {
                 break;
             case 7:
                 //Se kontingentsatser.
-                System.out.println("Du kan nu se kontingensatserne");
+                System.out.println("Du kan nu se kontingentsatserne");
                 //controller.PriceList();
                 break;
             case 8:
                 //Rediger kontingentsatser.
                 System.out.println("Du kan nu redigere i kontingentsatserne");
                 redigerKontingentpriserne();
-                mainMenu();
             default:
                 //Tastning eksistere ikke, prøv igen!
                 System.out.println("uønsket tastning! prøv igen!");
@@ -96,24 +99,32 @@ public class Menu {
         String name = userInput.nextLine();
         System.out.println("Tast fødselsdag (dd-mm-yyyy): ");
         String birthday = userInput.nextLine();
+        System.out.println("Tast email: ");
+        String email = userInput.nextLine();
         System.out.println("Tast medlemsskabtype (aktiv eller passiv medlemsskab): ");
         String membershiptype = userInput.nextLine();
         System.out.println("Tast activity type(motionist or competitive): ");
         String activityType = userInput.nextLine();
-        System.out.println("Tast email: ");
-        String email = userInput.nextLine();
-        Member newMember = new Member(name, birthday, membershiptype, activityType, email);
+        Member newMember = new Member(name, birthday, email, membershiptype, activityType);
         //controller.newMember(newMember);
+        mainMenu();
 
     }
-    public static void seeMember() {
+    public static void searchMember() {
         Scanner userInput = new Scanner(System.in);
         System.out.println("Tast navn: ");
         String name = userInput.nextLine();
-        System.out.println("Tast fødselsdag: ");
-        String birthday = userInput.nextLine();
-        //Member seeMember = new Member(name, birthday);
-        //controller.Member(seeMember);
+        MemberList.searchForMember(name);
+        selectFromSearchResults(name);
+        //controller.searchForMember(name);
+
+    }
+    public static void selectFromSearchResults(String name) {
+        System.out.println("Vælg et medlem");
+        int chosenMemberIndex = getUserInput();
+        //MemberList.searchForMember(name)
+        MemberList.getMemberArrayList().get(chosenMemberIndex-1).printMember();
+        //todo: how to get this to work.
     }
 
 
@@ -179,6 +190,14 @@ public class Menu {
                 mainMenu();
 
         }
+    }
+    public static void memberListMenu() {
+        System.out.println("Vælg et medlem");
+        MemberList.printMemberList();
+        int chosenMemberIndex = getUserInput();
+        MemberList.getMemberArrayList().get(chosenMemberIndex-1).printMember();
+        //todo: should go through the controller.
+
     }
 
 
