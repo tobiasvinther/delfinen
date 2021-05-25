@@ -5,6 +5,7 @@ import accounting.PriceList;
 import members.Member;
 import members.MemberList;
 
+//@author Sonja W
 public class Controller {
 
     //Create new member
