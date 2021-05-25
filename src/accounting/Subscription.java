@@ -29,5 +29,9 @@ public class Subscription {
         System.out.println("Over 60 years fee: " + Membership.getMembershipFee("Senior over 60"));
     }
 
+    public static void changeFees (String memberShip, double setFee) {
+        Membership.getMembership(memberShip).setFee(setFee);
+    }
+
 }
 
