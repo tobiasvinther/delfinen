@@ -38,8 +38,10 @@ public class MemberList {
     //todo: should this return a member instead?
     //search by name
     public static void searchForMember(String memberName) {
+        int counter = 1;
         for (Member member : MEMBER_LIST) {
             if(member.getName().equals(memberName)) {
+                System.out.print(counter + " - ");
                 System.out.println(member);
             }
         }
