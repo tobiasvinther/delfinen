@@ -22,15 +22,16 @@ public class MemberList {
         Collections.reverse(MEMBER_LIST);
         /*
         for(int i = 0; i<MEMBER_LIST.size(); i++) {
+
             System.out.print(i + " - ");
             System.out.println(MEMBER_LIST.get(i));
         }
         */
-
+        int counter = 1;
         for (Member member: MEMBER_LIST) {
-            int counter = 1;
             System.out.print(counter + " - ");
             System.out.println(member);
+            counter++;
         }
     }
 
