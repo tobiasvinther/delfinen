@@ -109,8 +109,11 @@ public class Member implements Comparable<Member> {
         return membershipType;
     }
 
+    //when setting membershipType we should also recalculate membership fee
     public void setMembershipType(String membershipType) {
+        MemberCalculations memCalculator = new MemberCalculations();
         this.membershipType = membershipType;
+        this.membershipFee = memCalculator.calculateMembershipFee(membershipType, this.age, this.ageGroup);
     }
 
     public String getActivityType() {

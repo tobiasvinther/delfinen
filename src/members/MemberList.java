@@ -37,6 +37,7 @@ public class MemberList {
 
     //todo: should this return a member instead?
     //search by name
+    /*
     public static void searchForMember(String memberName) {
         int counter = 1;
         for (Member member : MEMBER_LIST) {
@@ -45,6 +46,19 @@ public class MemberList {
                 System.out.println(member);
             }
         }
+    }
+
+     */
+    //maybe a bit strange, but this finds and prints the members from name AS WELL as returning
+    //said members index in the MEMBER_LIST (because the menu needs that for calling the member inspection view)
+    public static int searchForMember(String name) {
+        for (int i=0; i<MEMBER_LIST.size(); i++) {
+            if(MEMBER_LIST.get(i).getName().equalsIgnoreCase(name)) {
+                MEMBER_LIST.get(i).printMember();
+                return i;
+            }
+        }
+        return -1;
     }
 
     //search by ID

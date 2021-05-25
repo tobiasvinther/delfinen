@@ -1,9 +1,9 @@
 package Controller;
 
 import accounting.Membership;
-import accounting.PriceList;
 import members.Member;
 import members.MemberList;
+import members.WriteToFile;
 
 //@author Sonja W
 public class Controller {
@@ -32,6 +32,7 @@ public class Controller {
     public void editName(Member member, String newName) {
         member.setName(newName);
     }
+
     //Edit membershipType
     public void editMembershipType(Member member, String newMembershipType) {
         member.setMembershipType(newMembershipType);
@@ -61,14 +62,33 @@ public class Controller {
     public double getJuniorFee() {
         return Membership.getMembershipFee("Junior"); }
 
-
     //Edit senior membership
     public double getSeniorFee() {
         return Membership.getMembershipFee("Senior"); }
 
     //Edit 60+ membership
     public double getOver60Fee() {
-        return Membership.getMembershipFee("Senior over 60"); }
+        return Membership.getMembershipFee("Senior over 60");
+    }
+
+    public void setMembershipFee(String membershipName, double newFee) {
+        Membership.getMembership(membershipName).setFee(newFee);
+    }
+
+    public void setOver60Discount(double newDiscount) {
+        Membership.setOver60discount(newDiscount);
+    }
+
+    public void printMemberships() {
+        for(Membership membership : Membership.getFeeList()) {
+            System.out.println(membership);
+        }
+    }
+
+    public void exportMemberListToFile() {
+        WriteToFile writeToFile = new WriteToFile();
+        writeToFile.writeMembersToFile();
+    }
 
     //Edit 60+ membership discount
     //public double getOver60Discount() {

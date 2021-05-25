@@ -1,4 +1,4 @@
-package Menu;
+package menu;
 
 import Controller.Controller;
 import members.Member;
@@ -6,23 +6,16 @@ import members.MemberList;
 import java.util.Scanner;
 
 public class Menu {
+
     private static Controller controller = new Controller();
 
-    public static void main(String[] args) {
-        Member member1 = new Member("Tobias Vinther","01/02/1985", "emial@email.dk", "aktiv", "motionist");
-        Member member2 = new Member("Flemming Nielsen", "13/12/1994", "hello@jubii.dk", "passiv", "");
-        Member member3 = new Member("Anders Skovgaard", "16/08/1984", "test@email.dk", "passiv", "");
-        Member member4 = new Member("Felix Vimmel", "16/08/2008", "test@email.dk","aktiv", "konkurrencesvømmer");
-        mainMenu();
-    }
-
-    public static int getUserInput(){
+    public int getUserInput(){
         Scanner scanner = new Scanner(System.in);
         int userInput = scanner.nextInt();
         return userInput;
     }
 
-    public static void mainMenu() {
+    public void mainMenu() {
         System.out.println();
         System.out.println("+--------------------------+");
         System.out.println("|         Velkommen!       |");
@@ -31,14 +24,12 @@ public class Menu {
         System.out.println("Dine muligheder: ");
         System.out.println("1 ->> Opret nyt medlem");
         System.out.println("2 ->> Søg på medlem");
-        System.out.println("3 ->> Se medlemsliste: ");
-        //System.out.println("4 ->> Rediger eller slet medlem");
-        System.out.println("5 ->> Se årlige indtjening");
-        System.out.println("6 ->> Se liste over medlemmer der er i restance");
-        System.out.println("7 ->> Se kontingentsatser");
-        System.out.println("8 ->> Rediger kontingentsatser");
-        System.out.println(" ->> Afslut program");
-
+        System.out.println("3 ->> Se medlemsliste");
+        System.out.println("4 ->> Se årlige indtjening");
+        System.out.println("5 ->> Se liste over medlemmer der er i restance");
+        System.out.println("6 ->> Se kontingentsatser");
+        System.out.println("7 ->> Rediger kontingentsatser");
+        System.out.println("0 ->> Afslut program");
 
         switch (getUserInput()) {
             case 1:
@@ -60,38 +51,36 @@ public class Menu {
                 memberListMenu();
                 break;
             case 4:
-                //todo: delete this case. This is done through list view instead
-                //Rediger eller slet medlem
-                System.out.println("Du valgte at redigere eller slette et medlem");
-                editOrDeleteMember();
-                break;
-            case 5:
                 //Se årlige indtjening
                 System.out.println("Du valgte at se på årlige indtjening");
                 //controller.calculateSubcription();
                 break;
-            case 6:
+            case 5:
                 //Se liste over medlemmer der er i restance.
                 System.out.println("Du valgte at se listen over medlemmer der er i restance");
                 //Svært at se hvilken klasse den skal hentes fra.
                 break;
-            case 7:
+            case 6:
                 //Se kontingentsatser.
                 System.out.println("Du kan nu se kontingentsatserne");
+                editMembershipFees();
+
                 //controller.PriceList();
                 break;
-            case 8:
+            case 7:
                 //Rediger kontingentsatser.
                 System.out.println("Du kan nu redigere i kontingentsatserne");
-                redigerKontingentpriserne();
+                editMembershipFees();
+            case 0:
+                break;
             default:
                 //Tastning eksistere ikke, prøv igen!
-                System.out.println("uønsket tastning! prøv igen!");
+                System.out.println("Uønsket tastning! Prøv igen!");
                 mainMenu();
         }
     }
     //todo: why does this create two members?
-    public static void newMember() {
+    public void newMember() {
         Scanner userInput = new Scanner(System.in);
         System.out.println("Tast navn: ");
         String name = userInput.nextLine();
@@ -104,32 +93,35 @@ public class Menu {
         System.out.println("Tast activity type(motionist eller konkurrencesvømmer): ");
         String activityType = userInput.nextLine();
         Member newMember = new Member(name, birthday, email, membershiptype, activityType);
-        controller.newMember(newMember);
+        //controller.newMember(newMember);
         //userInput.nextLine();
         System.out.println("Medlem oprettet");
         mainMenu();
     }
 
-    public static void searchMember() {
+    public void searchMember() {
         Scanner userInput = new Scanner(System.in);
         System.out.println("Tast navn: ");
         String name = userInput.nextLine();
-        MemberList.searchForMember(name);
-        selectFromSearchResults(name);
+        int memberIndex = MemberList.searchForMember(name);
+        memberMenu(memberIndex);
+        //selectFromSearchResults(name);
         //controller.searchForMember(name);
 
     }
+    /*
     public static void selectFromSearchResults(String name) {
         System.out.println("Vælg et medlem");
         int chosenMemberIndex = getUserInput();
         //MemberList.searchForMember(name)
         MemberList.getMemberArrayList().get(chosenMemberIndex-1).printMember();
-        //todo: how to get this to work.
+        //this doesn't work right now...
     }
+     */
 
-
+    /*
     public static void editOrDeleteMember() {
-        System.out.println("Du har nu følgende muligheder: ");
+        System.out.println("Du har nu følgende muligheder:");
         System.out.println("Rediger medlem: ");
         System.out.println("Slet medlem: ");
 
@@ -150,39 +142,50 @@ public class Menu {
 
         }
     }
-    public static void redigerKontingentpriserne() {
-        System.out.println("Du har nu følgende valgmuligheder: ");
-        System.out.println("Tryk 1 for at redigere passivt medlemsskab:");
-        System.out.println("Tryk 2 for at redigere junior medlemsskab: ");
-        System.out.println("Tryk 3 for at redigere senior medlemsskab: ");
-        System.out.println("Tryk 4 for at redigere rabat 60+ år: ");
-        System.out.println("Tryk 5 for at redigere 60+ år medlemsskab");
+     */
+
+    public void editMembershipFees() {
+        Scanner userInput = new Scanner(System.in);
+        controller.printMemberships();
+        System.out.println("Du har nu følgende valgmuligheder:");
+        System.out.println("1 ->> Redigér passivt medlemsskab");
+        System.out.println("2 ->> Redigér junior medlemsskab");
+        System.out.println("3 ->> Redigér senior medlemsskab");
+        System.out.println("4 ->> Redigér rabat 60+ år");
+        System.out.println("0 ->> Tilbage til hovedmenu");
+        double newFee;
 
         switch (getUserInput()) {
             case 1:
                 //Rediger passiv medlemsskab.
-                System.out.println("Du valgte at redigere passivt medlemsskab ");
-                //controller.getPassivFee();
+                System.out.println("Indtast ny sats for passivt medlemsskab: ");
+                newFee = userInput.nextDouble();
+                controller.setMembershipFee("passivt", newFee);
+                editMembershipFees();
                 break;
             case 2:
                 //Rediger juniormedlemsskab.
-                System.out.println("Du valgte at redigere juniormedlemsskab ");
-                //controller.getJuniorFee();
+                System.out.println("Indtast ny sats for juniormedlemsskab: ");
+                newFee = userInput.nextDouble();
+                controller.setMembershipFee("junior", newFee);
+                editMembershipFees();
                 break;
             case 3:
                 //Redigere seniormedlemsskab.
-                System.out.println("Du valgte at redigere seniormedlemsskab ");
-                //controller.getSeniorFee();
+                System.out.println("Indtast ny sats for seniormedlemsskab: ");
+                newFee = userInput.nextDouble();
+                controller.setMembershipFee("senior", newFee);
+                editMembershipFees();
                 break;
-            case 4:
+            case 4: //todo: finish
                 //Over 60 år rabat.
-                System.out.println("Du valgte at redigere rabat til 60+ ");
-                //controller.getOver60Fee();
+                System.out.println("Indtast ny rabat (eks. 25% = 0,75): ");
+                newFee = userInput.nextDouble();
+                controller.setOver60Discount(newFee);
+                editMembershipFees();
                 break;
-            case 5:
-                //Redigere 60+ medlemsskab.
-                System.out.println("Du valgte at redigere medlemsskab for 60+ ");
-                //controller.getOver60Fee();
+            case 0:
+                mainMenu();
                 break;
             default:
                 //Tastning eksistere ikke, prøv igen.
@@ -191,14 +194,25 @@ public class Menu {
 
         }
     }
-    public static void memberListMenu() {
+    public void memberListMenu() {
         controller.printMemberList();
         System.out.println("x ->> Vælg et medlem");
-        int chosenMemberIndex = getUserInput()-1;
-        memberMenu(chosenMemberIndex);
+        System.out.println("0 ->> Tilbage til hovedmenuen");
+        System.out.println("999 ->> Eksportér medlemslisten til fil");
+
+        int chosenMemberIndex = getUserInput();
+
+        if(chosenMemberIndex == 0) {
+            mainMenu();
+        } else if (chosenMemberIndex == 999) {
+            controller.exportMemberListToFile();
+            System.out.println("Medlemsliste eksporteret");
+            memberListMenu();
+        } else memberMenu(chosenMemberIndex-1);
+
     }
 
-    public static void memberMenu(int memberIndex) {
+    public void memberMenu(int memberIndex) {
         controller.printMember(memberIndex);
         System.out.println("1 ->> Redigér navn");
         System.out.println("2 ->> Redigér email");
@@ -206,7 +220,7 @@ public class Menu {
         System.out.println("4 ->> Redigér aktivitetstype");
         System.out.println("5 ->> Slet medlem");
         System.out.println("6 ->> Tilbage til medlemsliste");
-        System.out.println("7 ->> Tilbage til hovedmenu");
+        System.out.println("0 ->> Tilbage til hovedmenu");
         Scanner userInput = new Scanner(System.in);
 
         switch (getUserInput()) {
@@ -223,8 +237,11 @@ public class Menu {
                 controller.editEmail(MemberList.getMemberArrayList().get(memberIndex), newEmail); //todo: change to go through controller?
                 memberMenu(memberIndex);
                 break;
-            case 3: //todo: update fees! And choose from list of fees!
-                System.out.println("Indtast nyt medlemskabstype (passivt/aktivt): "); //todo: create method that automatically sets the active to the correct type based on age
+            case 3: //this could be made better if the user just chose between active and passive and the system did the rest
+                System.out.println("Indtast nyt medlemskabstype (aktiv/passiv)");
+                String newMembership = userInput.nextLine();
+                controller.editMembershipType(MemberList.getMemberArrayList().get(memberIndex), newMembership);
+                //MemberList.getMemberArrayList().get(memberIndex).setMembershipType(newMembership);
                 //String newMembershipType = userInput.nextLine();
                 //controller.editEmail(MemberList.getMemberArrayList().get(memberIndex), newEmail); //todo: change to go through controller?
                 memberMenu(memberIndex);
@@ -243,13 +260,9 @@ public class Menu {
             case 6:
                 memberListMenu();
                 break;
-            case 7:
+            case 0:
                 mainMenu();
                 break;
         }
     }
-
-
-
-
 }
