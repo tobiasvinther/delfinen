@@ -12,6 +12,7 @@ public class Member implements Comparable<Member> {
     private LocalDate birthday;
     private int age;
     private int memberID;
+    private String email;
     private String membershipType; //active or passive
     private String ageGroup; //junior or senior
     private String activityType; //exercise or competitive
@@ -51,11 +52,11 @@ public class Member implements Comparable<Member> {
      * @param activityType exercise/competitive (empty if passive)
      */
     //overloaded constructor, where birthday parameter is a string instead
-    //todo: add email as a required info
-    public Member (String name, String birthday, String membershipType, String activityType) {
+    public Member (String name, String birthday, String email, String membershipType, String activityType) {
         MemberCalculations memCalculator = new MemberCalculations();
         this.name = name;
         this.birthday = memCalculator.convertStringToLocalDate(birthday);
+        this.email = email;
         this.membershipType = membershipType;
         this.activityType = activityType;
         this.hasPaidMembership = true;
