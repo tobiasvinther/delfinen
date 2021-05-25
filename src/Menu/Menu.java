@@ -1,3 +1,5 @@
+package Menu;
+
 import members.Member;
 
 import java.sql.SQLOutput;
@@ -89,15 +91,17 @@ public class Menu {
     }
     public static void newMember() {
         Scanner userInput = new Scanner(System.in);
-        System.out.println("Enter member name: ");
+        System.out.println("Tast navn: ");
         String name = userInput.nextLine();
-        System.out.println("Enter dd-mm-yyyy: ");
+        System.out.println("Tast fødselsdag (dd-mm-yyyy): ");
         String birthday = userInput.nextLine();
-        System.out.println("Enter (active or passive membership): ");
+        System.out.println("Tast medlemsskabtype (aktiv eller passiv medlemsskab): ");
         String membershiptype = userInput.nextLine();
-        System.out.println("Enter activity type(motionist or competitive): ");
+        System.out.println("Tast activity type(motionist or competitive): ");
         String activityType = userInput.nextLine();
-        Member newMember = new Member(name, birthday, membershiptype, activityType );
+        System.out.println("Tast email: ");
+        String email = userInput.nextLine();
+        Member newMember = new Member(name, birthday, membershiptype, activityType, email);
         //controller.newMember(newMember);
 
     }
