@@ -1,5 +1,6 @@
 package Menu;
 
+import Controller.Controller;
 import members.Member;
 import members.MemberList;
 
@@ -8,6 +9,8 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Menu {
+    private static Controller controller = new Controller();
+
     public static void main(String[] args) {
         Member member1 = new Member("Tobias Vinther", LocalDate.of(1985, 2, 1), "aktiv", "motionist");
         Member member2 = new Member("Flemming Nielsen", LocalDate.of(1994, 6, 11), "passiv", "");
@@ -194,7 +197,7 @@ public class Menu {
     public static void memberListMenu() {
         System.out.println("Vælg et medlem");
         int chosenMemberIndex = getUserInput()-1;
-        //controller.printMember(chosenMemberIndex);
+        controller.printMember(chosenMemberIndex);
 
         /*MemberList.printMemberList();
         int chosenMemberIndex = getUserInput();
