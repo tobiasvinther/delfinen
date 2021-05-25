@@ -20,15 +20,18 @@ public class MemberList {
     public static void printMemberList() {
         Collections.sort(MEMBER_LIST);
         Collections.reverse(MEMBER_LIST);
+        /*
         for(int i = 0; i<MEMBER_LIST.size(); i++) {
             System.out.print(i + " - ");
             System.out.println(MEMBER_LIST.get(i));
         }
-        /*
+        */
+
         for (Member member: MEMBER_LIST) {
+            int counter = 1;
+            System.out.print(counter + " - ");
             System.out.println(member);
         }
-         */
     }
 
     //todo: should this return a member instead?
