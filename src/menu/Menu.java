@@ -6,7 +6,7 @@ import members.MemberList;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
-//@Author
+//@Author Thony
 public class Menu {
 
     private static Controller controller = new Controller();
