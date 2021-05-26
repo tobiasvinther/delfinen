@@ -17,7 +17,8 @@ public class Subscription {
     public static void hasNotPayed () {
         for (int i = 0; i < MemberList.getMemberArrayList().size(); i++) {
             if (MemberList.getMemberArrayList().get(i).isHasPaidMembership() != true ) {
-                System.out.println("People who needs to pay" + MemberList.getMemberArrayList().get(i));
+                System.out.println("People who needs to pay: ");
+                System.out.println(MemberList.getMemberArrayList().get(i));
             }
         }
     }
