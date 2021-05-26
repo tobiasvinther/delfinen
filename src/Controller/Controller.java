@@ -9,11 +9,6 @@ import members.WriteToFile;
 //@author Sonja W
 public class Controller {
 
-    //Create new member
-    public void newMember(Member newMember) {
-        MemberList.addMemberToList(newMember);
-    }
-
     //Search for member
     public int searchMember(String name) {
         return MemberList.searchForMember(name);
@@ -73,7 +68,8 @@ public class Controller {
     }
 
     public void setMembershipFee(String membershipName, double newFee) {
-        Membership.getMembership(membershipName).setFee(newFee);
+        //Membership.getMembership(membershipName).setFee(newFee);
+        Subscription.changeFees(membershipName, newFee);
     }
 
     public void setOver60Discount(double newDiscount) {
@@ -81,9 +77,12 @@ public class Controller {
     }
 
     public void printMemberships() {
+        /*
         for(Membership membership : Membership.getFeeList()) {
             System.out.println(membership);
         }
+         */
+        Subscription.checkFees();
     }
 
     public void exportMemberListToFile() {

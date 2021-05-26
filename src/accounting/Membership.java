@@ -86,18 +86,6 @@ public class Membership {
         return "* " + name + ": " + df.format(fee) + " kr.";
     }
 
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String newName) {
-        this.name = newName;
-    }
-
-    public double getFee() {
-        return this.fee;
-    }
-
     public void setFee(double newFee) {
         this.fee = newFee;
     }
