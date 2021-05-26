@@ -3,6 +3,8 @@ package menu;
 import Controller.Controller;
 import members.Member;
 import members.MemberList;
+
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Menu {
@@ -23,12 +25,11 @@ public class Menu {
         System.out.println("+--------------------------+");
         System.out.println("Dine muligheder: ");
         System.out.println("1 ->> Opret nyt medlem");
-        System.out.println("2 ->> Søg på medlem");
+        System.out.println("2 ->> Søg efter medlem");
         System.out.println("3 ->> Se medlemsliste");
         System.out.println("4 ->> Se årlige indtjening");
         System.out.println("5 ->> Se liste over medlemmer der er i restance");
         System.out.println("6 ->> Se kontingentsatser");
-        //System.out.println("7 ->> Rediger kontingentsatser");
         System.out.println("0 ->> Afslut program");
 
         switch (getUserInput()) {
@@ -53,7 +54,7 @@ public class Menu {
             case 4:
                 //Se årlige indtjening
                 System.out.println("Du valgte at se på årlige indtjening");
-                controller.calculateYearlyIncome();
+                yearlyIncomeMenu();
                 break;
             case 5:
                 //Se liste over medlemmer der er i restance.
@@ -65,10 +66,6 @@ public class Menu {
                 System.out.println("Du kan nu se kontingentsatserne");
                 editMembershipFees();
                 break;
-            case 7:
-                //Rediger kontingentsatser.
-                System.out.println("Du kan nu redigere i kontingentsatserne");
-                editMembershipFees();
             case 0:
                 break;
             default:
@@ -77,7 +74,7 @@ public class Menu {
                 mainMenu();
         }
     }
-    //todo: why does this create two members?
+
     public void newMember() {
         Scanner userInput = new Scanner(System.in);
         System.out.println("Tast navn: ");
@@ -91,8 +88,6 @@ public class Menu {
         System.out.println("Tast activity type(motionist eller konkurrencesvømmer): ");
         String activityType = userInput.nextLine();
         Member newMember = new Member(name, birthday, email, membershiptype, activityType);
-        //controller.newMember(newMember);
-        //userInput.nextLine();
         System.out.println("Medlem oprettet");
         mainMenu();
     }
@@ -103,10 +98,8 @@ public class Menu {
         String name = userInput.nextLine();
         int memberIndex = MemberList.searchForMember(name);
         memberMenu(memberIndex);
-        //selectFromSearchResults(name);
-        //controller.searchForMember(name);
-
     }
+
     /*
     public static void selectFromSearchResults(String name) {
         System.out.println("Vælg et medlem");
@@ -114,33 +107,7 @@ public class Menu {
         //MemberList.searchForMember(name)
         MemberList.getMemberArrayList().get(chosenMemberIndex-1).printMember();
         //this doesn't work right now...
-    }
-     */
-
-    /*
-    public static void editOrDeleteMember() {
-        System.out.println("Du har nu følgende muligheder:");
-        System.out.println("Rediger medlem: ");
-        System.out.println("Slet medlem: ");
-
-        switch (getUserInput()) {
-            case 1:
-                //Rediger medlem
-                System.out.println("Du valgte at redigere et medlem");
-                //controller.Member();
-                break;
-            case 2:
-                //Slet medlem
-                System.out.println("Du valgte at slette et medlem");
-                //controller.Member
-            default:
-                //Tastning eksistere ikke, prøv igen.
-                System.out.println("Uønsket tastning! Prøv igen!");
-                mainMenu();
-
-        }
-    }
-     */
+    }*/
 
     public void editMembershipFees() {
         Scanner userInput = new Scanner(System.in);
@@ -189,16 +156,18 @@ public class Menu {
                 //Tastning eksistere ikke, prøv igen.
                 System.out.println("Uønsket tastning! Prøv igen!");
                 mainMenu();
-
         }
     }
 
     public void yearlyIncomeMenu() {
         controller.calculateYearlyIncome();
+        System.out.println("0 ->> Tilbage til hovedmenuen");
+        backToMainMenu();
     }
 
     public void membersInArrearsMenu() {
         controller.seeMembersInArrears();
+        backToMainMenu();
     }
 
     public void memberListMenu() {
@@ -216,7 +185,6 @@ public class Menu {
             System.out.println("Medlemsliste eksporteret");
             memberListMenu();
         } else memberMenu(chosenMemberIndex-1);
-
     }
 
     public void memberMenu(int memberIndex) {
@@ -230,18 +198,19 @@ public class Menu {
         System.out.println("0 ->> Tilbage til hovedmenu");
         Scanner userInput = new Scanner(System.in);
 
+        //todo: if there's time change some of these to use the controller when finding the member in the list
         switch (getUserInput()) {
 
             case 1:
                 System.out.println("Indtast nyt navn: ");
                 String newName = userInput.nextLine();
-                controller.editName(MemberList.getMemberArrayList().get(memberIndex), newName); //todo: change to go through controller?
+                controller.editName(MemberList.getMemberArrayList().get(memberIndex), newName);
                 memberMenu(memberIndex);
                 break;
             case 2:
                 System.out.println("Indtast ny email: ");
                 String newEmail = userInput.nextLine();
-                controller.editEmail(MemberList.getMemberArrayList().get(memberIndex), newEmail); //todo: change to go through controller?
+                controller.editEmail(MemberList.getMemberArrayList().get(memberIndex), newEmail);
                 memberMenu(memberIndex);
                 break;
             case 3: //this could be made better if the user just chose between active and passive and the system did the rest
@@ -253,7 +222,7 @@ public class Menu {
             case 4:
                 System.out.println("Indtast ny aktivitetstype (motionist eller konkurrencesvømmer): ");
                 String newActivityType = userInput.nextLine();
-                controller.editActivityType(MemberList.getMemberArrayList().get(memberIndex), newActivityType); //todo: change to go through controller?
+                controller.editActivityType(MemberList.getMemberArrayList().get(memberIndex), newActivityType);
                 memberMenu(memberIndex);
                 break;
             case 5:
@@ -267,6 +236,23 @@ public class Menu {
             case 0:
                 mainMenu();
                 break;
+        }
+    }
+
+    public void backToMainMenu() {
+        System.out.println("0 ->> Tilbage til hovedmenuen");
+        int userInput = -1;
+        try {
+            userInput = getUserInput();
+        } catch(InputMismatchException e) {
+            System.out.println("*Kun tal accepteres*");
+            backToMainMenu();
+        }
+        if(userInput == 0) {
+            mainMenu();
+        } else {
+            System.out.println("*Ukendt kommando*");
+            backToMainMenu();
         }
     }
 }
