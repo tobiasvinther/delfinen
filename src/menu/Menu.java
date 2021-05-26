@@ -96,18 +96,9 @@ public class Menu {
         Scanner userInput = new Scanner(System.in);
         System.out.println("Tast navn: ");
         String name = userInput.nextLine();
-        int memberIndex = MemberList.searchForMember(name);
+        int memberIndex = controller.searchMember(name);
         memberMenu(memberIndex);
     }
-
-    /*
-    public static void selectFromSearchResults(String name) {
-        System.out.println("Vælg et medlem");
-        int chosenMemberIndex = getUserInput();
-        //MemberList.searchForMember(name)
-        MemberList.getMemberArrayList().get(chosenMemberIndex-1).printMember();
-        //this doesn't work right now...
-    }*/
 
     public void editMembershipFees() {
         Scanner userInput = new Scanner(System.in);
@@ -161,7 +152,6 @@ public class Menu {
 
     public void yearlyIncomeMenu() {
         controller.calculateYearlyIncome();
-        System.out.println("0 ->> Tilbage til hovedmenuen");
         backToMainMenu();
     }
 

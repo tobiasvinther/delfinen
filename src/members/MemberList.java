@@ -47,14 +47,13 @@ public class MemberList {
             }
         }
     }
-
      */
-    //maybe a bit strange, but this finds and prints the members from name AS WELL as returning
-    //said members index in the MEMBER_LIST (because the menu needs that for calling the member inspection view)
+
+    //this returns the index in the MEMBER_LIST based on the same of the searched for member
     public static int searchForMember(String name) {
         for (int i=0; i<MEMBER_LIST.size(); i++) {
             if(MEMBER_LIST.get(i).getName().equalsIgnoreCase(name)) {
-                MEMBER_LIST.get(i).printMember();
+                //MEMBER_LIST.get(i).printMember();
                 return i;
             }
         }

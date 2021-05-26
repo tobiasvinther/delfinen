@@ -15,8 +15,8 @@ public class Controller {
     }
 
     //Search for member
-    public void searchMember(String name) {
-        MemberList.searchForMember(name);
+    public int searchMember(String name) {
+        return MemberList.searchForMember(name);
     }
 
     //See memberlist
