@@ -28,7 +28,7 @@ public class Menu {
         System.out.println("4 ->> Se årlige indtjening");
         System.out.println("5 ->> Se liste over medlemmer der er i restance");
         System.out.println("6 ->> Se kontingentsatser");
-        System.out.println("7 ->> Rediger kontingentsatser");
+        //System.out.println("7 ->> Rediger kontingentsatser");
         System.out.println("0 ->> Afslut program");
 
         switch (getUserInput()) {
@@ -53,19 +53,17 @@ public class Menu {
             case 4:
                 //Se årlige indtjening
                 System.out.println("Du valgte at se på årlige indtjening");
-                //controller.calculateSubcription();
+                controller.calculateYearlyIncome();
                 break;
             case 5:
                 //Se liste over medlemmer der er i restance.
                 System.out.println("Du valgte at se listen over medlemmer der er i restance");
-                //Svært at se hvilken klasse den skal hentes fra.
+                membersInArrearsMenu();
                 break;
             case 6:
                 //Se kontingentsatser.
                 System.out.println("Du kan nu se kontingentsatserne");
                 editMembershipFees();
-
-                //controller.PriceList();
                 break;
             case 7:
                 //Rediger kontingentsatser.
@@ -74,7 +72,7 @@ public class Menu {
             case 0:
                 break;
             default:
-                //Tastning eksistere ikke, prøv igen!
+                //Tastning eksisterer ikke, prøv igen!
                 System.out.println("Uønsket tastning! Prøv igen!");
                 mainMenu();
         }
@@ -170,7 +168,7 @@ public class Menu {
                 controller.setMembershipFee("junior", newFee);
                 editMembershipFees();
                 break;
-            case 3:
+            case 3: //todo: this should also make senior over 60 recalculate
                 //Redigere seniormedlemsskab.
                 System.out.println("Indtast ny sats for seniormedlemsskab: ");
                 newFee = userInput.nextDouble();
@@ -194,6 +192,15 @@ public class Menu {
 
         }
     }
+
+    public void yearlyIncomeMenu() {
+        controller.calculateYearlyIncome();
+    }
+
+    public void membersInArrearsMenu() {
+        controller.seeMembersInArrears();
+    }
+
     public void memberListMenu() {
         controller.printMemberList();
         System.out.println("x ->> Vælg et medlem");
@@ -241,9 +248,6 @@ public class Menu {
                 System.out.println("Indtast nyt medlemskabstype (aktiv/passiv)");
                 String newMembership = userInput.nextLine();
                 controller.editMembershipType(MemberList.getMemberArrayList().get(memberIndex), newMembership);
-                //MemberList.getMemberArrayList().get(memberIndex).setMembershipType(newMembership);
-                //String newMembershipType = userInput.nextLine();
-                //controller.editEmail(MemberList.getMemberArrayList().get(memberIndex), newEmail); //todo: change to go through controller?
                 memberMenu(memberIndex);
                 break;
             case 4:

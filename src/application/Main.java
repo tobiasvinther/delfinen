@@ -17,6 +17,7 @@ public class Main {
         Member member2 = new Member("Flemming Nielsen", "13/12/1994", "test@email.dk", "passiv", "motionist");
         Member member3 = new Member("Anders Skovgaard", "16/08/1984", "test@email.dk", "passiv", "motionist");
         Member member4 = new Member("Felix Vimmel", "16/08/2008", "test@email.dk","aktiv", "konkurrencesvømmer");
+        member4.setHasPaidMembership(false);
 
         Menu menu = new Menu();
         menu.mainMenu();

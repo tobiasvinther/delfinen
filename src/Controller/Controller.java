@@ -1,6 +1,7 @@
 package Controller;
 
 import accounting.Membership;
+import accounting.Subscription;
 import members.Member;
 import members.MemberList;
 import members.WriteToFile;
@@ -88,6 +89,14 @@ public class Controller {
     public void exportMemberListToFile() {
         WriteToFile writeToFile = new WriteToFile();
         writeToFile.writeMembersToFile();
+    }
+
+    public void calculateYearlyIncome() {
+        Subscription.calculateSubscription();
+    }
+
+    public void seeMembersInArrears() {
+        Subscription.hasNotPayed();
     }
 
     //Edit 60+ membership discount
