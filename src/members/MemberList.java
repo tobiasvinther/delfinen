@@ -20,13 +20,7 @@ public class MemberList {
     public static void printMemberList() {
         Collections.sort(MEMBER_LIST);
         Collections.reverse(MEMBER_LIST);
-        /*
-        for(int i = 0; i<MEMBER_LIST.size(); i++) {
 
-            System.out.print(i + " - ");
-            System.out.println(MEMBER_LIST.get(i));
-        }
-        */
         int counter = 1;
         for (Member member: MEMBER_LIST) {
             System.out.print(counter + " - ");
@@ -34,20 +28,6 @@ public class MemberList {
             counter++;
         }
     }
-
-    //todo: should this return a member instead?
-    //search by name
-    /*
-    public static void searchForMember(String memberName) {
-        int counter = 1;
-        for (Member member : MEMBER_LIST) {
-            if(member.getName().equals(memberName)) {
-                System.out.print(counter + " - ");
-                System.out.println(member);
-            }
-        }
-    }
-     */
 
     //this returns the index in the MEMBER_LIST based on the same of the searched for member
     public static int searchForMember(String name) {
@@ -58,15 +38,6 @@ public class MemberList {
             }
         }
         return -1;
-    }
-
-    //search by ID
-    public static void searchForMember(int ID) {
-        for (Member member : MEMBER_LIST) {
-            if(member.getMemberID() == ID) {
-                System.out.println(member);
-            }
-        }
     }
 
     //get arrayList
